@@ -1,0 +1,101 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Finalnasana.MainPage"
+             Title="Schedules"
+             BackgroundColor="#F7F7F7">
+
+    <!-- Wrap the entire content in a ScrollView -->
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            <!-- Button to add new schedule -->
+            <Button Text="Add Schedule" 
+                    BackgroundColor="#4CAF50" 
+                    TextColor="White" 
+                    CornerRadius="10"
+                    HeightRequest="50" 
+                    Clicked="OnAddScheduleClicked" />
+
+            <!-- List of all schedules -->
+            <CollectionView ItemsSource="{Binding Schedules}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="15" Margin="5" BorderColor="LightGray" BackgroundColor="White" CornerRadius="10">
+                            <StackLayout Spacing="15">
+                                <!-- Task Name -->
+                                <Label Text="Course:" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium" 
+                                       TextColor="#333" />
+                                <Label Text="{Binding TaskName}" 
+                                       FontSize="16" 
+                                       TextColor="#555" />
+
+                                <!-- Task Description -->
+                                <Label Text="Description:" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium" 
+                                       TextColor="#333" />
+                                <Label Text="{Binding TaskDescription}" 
+                                       FontSize="14" 
+                                       TextColor="#555" />
+
+                                <!-- Day of Week -->
+                                <Label Text="Day:" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium" 
+                                       TextColor="#333" />
+                                <Label Text="{Binding DayOfWeek}" 
+                                       FontSize="16" 
+                                       TextColor="#555" />
+
+                                <!-- Start and End Time -->
+                                <Label Text="Start Time:" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium" 
+                                       TextColor="#333" />
+                                <Label Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}" 
+                                       FontSize="16" 
+                                       TextColor="#555" />
+
+                                <Label Text="End Time:" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium" 
+                                       TextColor="#333" />
+                                <Label Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}" 
+                                       FontSize="16" 
+                                       TextColor="#555" />
+
+                                <!-- Priority -->
+                                <Label Text="Type:" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium" 
+                                       TextColor="#333" />
+                                <Label Text="{Binding Priority}" 
+                                       FontSize="16" 
+                                       TextColor="#FF5722" />
+
+                                <!-- Edit and Delete Buttons -->
+                                <StackLayout Orientation="Horizontal" Spacing="15">
+                                    <Button Text="Edit" 
+                                            BackgroundColor="#FFC107" 
+                                            TextColor="White" 
+                                            CornerRadius="5" 
+                                             CommandParameter="{Binding Id}" 
+                                            Clicked="OnEditSchedule" 
+                                            WidthRequest="100" />
+                                    <Button Text="Delete" 
+                                            BackgroundColor="#F44336" 
+                                            TextColor="White" 
+                                            CornerRadius="5" 
+                                            CommandParameter="{Binding Id}" 
+                                            Clicked="OnDeleteSchedule" 
+                                            WidthRequest="100" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
